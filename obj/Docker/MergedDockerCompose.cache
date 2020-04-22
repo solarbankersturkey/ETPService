@@ -1,0 +1,44 @@
+services:
+  customerservice:
+    build:
+      context: C:\Users\mert2\source\repos\ETPservice
+      dockerfile: CustomerService/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: https://+:443;http://+:80
+    image: customerservice
+    ports:
+    - target: 80
+    - target: 443
+    volumes:
+    - C:\Users\mert2\AppData\Roaming\ASP.NET\Https:/root/.aspnet/https:ro
+    - C:\Users\mert2\AppData\Roaming\Microsoft\UserSecrets:/root/.microsoft/usersecrets:ro
+  gateway:
+    build:
+      context: C:\Users\mert2\source\repos\ETPservice
+      dockerfile: Gateway/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: https://+:443;http://+:80
+    image: gateway
+    ports:
+    - target: 80
+    - target: 443
+    volumes:
+    - C:\Users\mert2\AppData\Roaming\ASP.NET\Https:/root/.aspnet/https:ro
+    - C:\Users\mert2\AppData\Roaming\Microsoft\UserSecrets:/root/.microsoft/usersecrets:ro
+  identityservice:
+    build:
+      context: C:\Users\mert2\source\repos\ETPservice
+      dockerfile: IdentityService/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: https://+:443;http://+:80
+    image: identityservice
+    ports:
+    - target: 80
+    - target: 443
+    volumes:
+    - C:\Users\mert2\AppData\Roaming\ASP.NET\Https:/root/.aspnet/https:ro
+    - C:\Users\mert2\AppData\Roaming\Microsoft\UserSecrets:/root/.microsoft/usersecrets:ro
+version: '3.4'
