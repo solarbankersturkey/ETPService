@@ -7877,9 +7877,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\mert2\\source\\repos\\ETPservice\\IdentityService\\IdentityService.csproj",
-      "projectName": "IdentityService",
-      "projectPath": "C:\\Users\\mert2\\source\\repos\\ETPservice\\IdentityService\\IdentityService.csproj",
+      "projectUniqueName": "C:\\Users\\mert2\\source\\repos\\ETPservice\\IdentityService\\identityservice.csproj",
+      "projectName": "identityservice",
+      "projectPath": "C:\\Users\\mert2\\source\\repos\\ETPservice\\IdentityService\\identityservice.csproj",
       "packagesPath": "C:\\Users\\mert2\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\mert2\\source\\repos\\ETPservice\\IdentityService\\obj\\",
       "projectStyle": "PackageReference",
@@ -7948,7 +7948,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -3,20 +3,19 @@
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim AS base
 WORKDIR /app
 EXPOSE 80
-EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
-COPY ["Gateway/Gateway.csproj", "Gateway/"]
-RUN dotnet restore "Gateway/Gateway.csproj"
+COPY ["Gateway/gateway.csproj", "Gateway/"]
+RUN dotnet restore "Gateway/gateway.csproj"
 COPY . .
 WORKDIR "/src/Gateway"
-RUN dotnet build "Gateway.csproj" -c Release -o /app/build
+RUN dotnet build "gateway.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "Gateway.csproj" -c Release -o /app/publish
+RUN dotnet publish "gateway.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "Gateway.dll"]
+ENTRYPOINT ["dotnet", "gateway.dll"]

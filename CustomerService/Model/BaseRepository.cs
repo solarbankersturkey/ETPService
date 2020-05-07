@@ -20,7 +20,7 @@ namespace CustomerService.Model
             _dbCollection = _mongoContext.GetCollection<TEntity>(typeof(TEntity).Name.ToLower());
         }
 
-        public async void Create(TEntity obj)
+        public async Task<string> Create(TEntity obj)
         {
             if (obj == null)
             {
@@ -31,8 +31,9 @@ namespace CustomerService.Model
             await _dbCollection.InsertOneAsync(obj);
 
             //INSERTED ID
-            var id = obj.GetType().GetProperty("Id").GetValue(obj, null);
+            var id = obj.GetType().GetProperty("Id").GetValue(obj, null).ToString();
 
+            return id;
         }
 
         public void Delete(string id)

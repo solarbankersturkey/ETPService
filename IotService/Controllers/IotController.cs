@@ -34,7 +34,6 @@ namespace IotService.Controllers
         [Route("senddata")]
         public IActionResult SendData(Cumulative data)
         {
-
             _cumulativeRepository.Create(data);
             return Ok("Başarılı");
         }

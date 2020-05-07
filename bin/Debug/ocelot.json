@@ -1,15 +1,15 @@
 {
   "ReRoutes": [
     {
-      "DownstreamPathTemplate": "/api/identity",
+      "DownstreamPathTemplate": "/api/identity/{everything}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 5001
+          "Host": "identityservice",
+          "Port": 9001
         }
       ],
-      "UpstreamPathTemplate": "/identity-service/identity"
+      "UpstreamPathTemplate": "/identity-service/identity/{everything}"
     },
     {
       "DownstreamPathTemplate": "/api/customer/{everything}",

@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using System.Net.Mail;
 
 namespace CustomerService.Controllers
 {
@@ -18,13 +19,15 @@ namespace CustomerService.Controllers
     {
         private readonly IUserRepository _customerRepository;
         public Crypto encoder { get; set; }
+        private IEmailSender _emailSender;
         public string DefaultLanguage { get; set; }
-        public CustomerController(IUserRepository customerRepository)
+        public CustomerController(IUserRepository customerRepository, IEmailSender emailSender)
         {
             _customerRepository = customerRepository;
             encoder = new Crypto();
             DefaultLanguage = "TR";
-        }        
+            _emailSender = emailSender;
+        }
 
         private static readonly string[] Customers = new[]
         {
@@ -60,27 +63,47 @@ namespace CustomerService.Controllers
         [Authorize]
         [HttpPost]
         [Route("getcustomer")]
-        public async Task<ActionResult<IEnumerable<User>>> GetCustomer(string id)
+        public async Task<ActionResult<IEnumerable<User>>> GetCustomer()
         {
             var customer = await _customerRepository.Get(encoder.Decrypt(HttpContext.User.FindFirst("etp_user").Value));
             return Ok(customer);
         }
 
+        [Obsolete]
         [Authorize]
         [HttpPost]
         [Route("login")]
         public async Task<ActionResult<IEnumerable<User>>> Login(string username, string password)
         {
             try
-            {//ONLINE STATUS WILL BE IMPLEMENTED **
+            {
                 var securepassword = encoder.HashHMAC(Encoding.ASCII.GetBytes("xUhs67g"), Encoding.ASCII.GetBytes(password));
                 var login_result = await _customerRepository.Get(Builders<User>.Filter.And(Builders<User>.Filter.Eq("Username", username), Builders<User>.Filter.Eq("Password", securepassword)));
-                var successResponse = new
+
+                if (login_result != null)
                 {
-                    successCode = 1,
-                    userInfo = login_result.FirstOrDefault()
-                };
-                return Ok(successResponse);
+                    var updateStatus = login_result[0];
+                    updateStatus.OnlineStatus = true;
+
+                    _customerRepository.Update(updateStatus);
+
+                    var successResponse = new
+                    {
+                        successCode = 1,
+                        userInfo = login_result.FirstOrDefault()
+                    };
+                    return Ok(successResponse);
+                }
+                else
+                {
+                    var successResponse = new
+                    {
+                        successCode = 0,
+                        message = "User does not exist or wrong information!"
+                    };
+                    return Ok(successResponse);
+                }
+
             }
             catch (Exception e)
             {
@@ -96,52 +119,18 @@ namespace CustomerService.Controllers
 
         [Authorize]
         [HttpPost]
-        [Route("logout")]//DÜZENLENECEK JWT KİLL AND STATUS FALSE
+        [Route("logout")]
         public async Task<ActionResult<IEnumerable<User>>> LogOut(string username, string password)
         {
             try
             {
                 var securepassword = encoder.HashHMAC(Encoding.ASCII.GetBytes("xUhs67g"), Encoding.ASCII.GetBytes(password));
-                var login_result = await _customerRepository.Get(Builders<User>.Filter.And(Builders<User>.Filter.Eq("Username", username), Builders<User>.Filter.Eq("Password", securepassword)));
-                var successResponse = new
-                {
-                    successCode = 1,
-                    userInfo = login_result.FirstOrDefault()
-                };
-                return Ok(successResponse);
-            }
-            catch (Exception e)
-            {
-                var errorJson = new
-                {
-                    error = e.ToString(),
-                    error_message = e.Message
-                };
+                var logout_result = await _customerRepository.Get(Builders<User>.Filter.And(Builders<User>.Filter.Eq("Username", username), Builders<User>.Filter.Eq("Password", securepassword)));
+                //status changed to false
+                var updateStatus = logout_result[0];
+                updateStatus.OnlineStatus = false;
 
-                return new JsonResult(errorJson);
-            }
-        }
-
-        [HttpPost]
-        [Route("register")]
-        public IActionResult Register(RegisterModel rm)
-        {
-            try
-            {
-                var username = "c_" + DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString() + DateTimeOffset.UtcNow.Millisecond.ToString();
-                var password = encoder.HashHMAC(Encoding.ASCII.GetBytes("xUhs67g"), Encoding.ASCII.GetBytes(DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString()));
-                
-                User newCustomer = new User()
-                {
-                    Name = rm.Name,
-                    Surname = rm.Surname,
-                    Email = rm.Email,
-                    Status = "New",
-                    Username = username,
-                    Password = password
-                };
-
-                _customerRepository.Create(newCustomer);//insertedid in baserepository if needed
+                _customerRepository.Update(updateStatus);
 
                 var successResponse = new
                 {
@@ -162,15 +151,88 @@ namespace CustomerService.Controllers
         }
 
         [HttpPost]
+        [Route("register")]
+        public async Task<JsonResult> Register(RegisterModel rm)
+        {
+            try
+            {
+                var control = await _customerRepository.Get(Builders<User>.Filter.Eq("Email", rm.Email));
+
+                if(control.Count == 0)
+                {
+                    var username = "c_" + DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString() + DateTimeOffset.UtcNow.Millisecond.ToString();
+                    var securepassword = encoder.HashHMAC(Encoding.ASCII.GetBytes("xUhs67g"), Encoding.ASCII.GetBytes("no_password_set"));
+
+                    //create the customer instance
+                    User newCustomer = new User()
+                    {
+                        Name = rm.Name,
+                        Surname = rm.Surname,
+                        Email = rm.Email,
+                        Status = "New",
+                        Username = username,
+                        Password = securepassword,
+                        OnlineStatus = false,
+                    };
+
+                    var resultid = await _customerRepository.Create(newCustomer);
+
+                    //SEND MAIL
+                    //MAIL BEGIN
+
+                    var To = rm.Email;
+                    var Subject = "Verify your account";
+                    var Body = "Please verify your email address by clicking here to move on to the next step in your energy trading platform membership." +
+                               Environment.NewLine + "<br /><b><a href='www.google.com?id=" + resultid + "'>Verify My Account</a></b>";
+
+                    _emailSender.Send(To, Subject, Body);
+
+                    //MAIL END
+
+                    var successJson = new
+                    {
+                        successCode = 1,
+                        message = "Email was sent!"
+                    };
+
+                    return new JsonResult(successJson);
+                }
+                else
+                {
+                    var successJson = new
+                    {
+                        successCode = 0,
+                        message = "Email already exist!"
+                    };
+
+                    return new JsonResult(successJson);
+                }                
+            }
+            catch (Exception e)
+            {
+                var errorJson = new
+                {
+                    error = e.ToString(),
+                    error_message = e.Message
+                };
+
+                return new JsonResult(errorJson);
+            }
+        }
+
+        [HttpPost]
         [Route("registercomplete")]
         public async Task<IActionResult> RegisterComplete(RegisterComplete rc)
         {
             try
             {
                 User userToComplete = await _customerRepository.Get(rc.Id);
+                userToComplete.Status = "Waiting";
+                //fill the address field
                 Address address = new Address() { 
                     City = rc.City, 
                     Full_Address = rc.Address };
+                //fill the customer details
                 Detail Detail = new Detail() {
                     Address = address,
                     Birth_Date = Convert.ToDateTime(rc.BirthDate),
@@ -178,11 +240,11 @@ namespace CustomerService.Controllers
                     Invoice_No = rc.InvoiceNumber,
                     Phone_No = rc.Phone,
                     Language = DefaultLanguage,
+                    Short_Location = "Default Location"
                 };
 
                 userToComplete.Detail = Detail;
                 
-
                 //COMPLETE REGISTRATION
                 _customerRepository.Update(userToComplete);
 
@@ -205,13 +267,117 @@ namespace CustomerService.Controllers
             }
         }
 
+        [HttpPost]
+        [Route("forgotpassword")]
+        public async Task<IActionResult> ForgotPassword(string Email)
+        {
+            try
+            {
+                var passwordRecover = await _customerRepository.Get(Builders<User>.Filter.Eq("Email", Email));
+                var userId = passwordRecover[0].Id;
+                if(passwordRecover!=null)
+                {
+                    //SEND EMAIL
+                    //EMAIL BEGIN
+
+                    var To = Email;
+                    var Subject = "Recover your password";
+                    var Body = "You can create a new password by clicking the link below." +
+                               Environment.NewLine + 
+                               "<br /><b><a href='www.google.com?id=" + userId + "'>Set Password</a></b>";
+
+                    _emailSender.Send(To, Subject, Body);
+
+                    //EMAIL END
+
+
+                    var successResponse = new
+                    {
+                        successCode = 1,
+                        message = "Email was sent."
+                    };
+                    return Ok(successResponse);
+                }
+                else
+                {
+                    var successResponse = new
+                    {
+                        successCode = 0,
+                        message = "Email does not exist."
+                    };
+                    return Ok(successResponse);
+                }
+                
+            }
+            catch (Exception e)
+            {
+                var errorJson = new
+                {
+                    error = e.ToString(),
+                    error_message = e.Message
+                };
+
+                return new JsonResult(errorJson);
+            }
+        }
+
+        [HttpPost]
+        [Route("setpassword")]
+        public async Task<IActionResult> SetPassword(string id,string password)
+        {
+            try
+            {
+                if(password != String.Empty)
+                {
+                    var passwordSetter = await _customerRepository.Get(id);
+                    var securePassword = encoder.HashHMAC(Encoding.ASCII.GetBytes("xUhs67g"), Encoding.ASCII.GetBytes(password));
+                    passwordSetter.Password = securePassword;
+                    //Update the new hashed password
+                    _customerRepository.Update(passwordSetter);
+
+                    var successResponse = new
+                    {
+                        successCode = 1,
+                        message = "New password has been set."
+                    };
+                    return Ok(successResponse);
+                }
+                else
+                {
+                    var successResponse = new
+                    {
+                        successCode = 0,
+                        message = "An error occurred while setting the password."
+                    };
+                    return Ok(successResponse);
+                }
+
+            }
+            catch (Exception e)
+            {
+                var errorJson = new
+                {
+                    error = e.ToString(),
+                    error_message = e.Message
+                };
+
+                return new JsonResult(errorJson);
+            }
+        }
+
 
         [Authorize]
         [HttpGet]
         [Route("validatecustomertoken")]
-        public IActionResult ValidateCustomerToken()
+        public JsonResult ValidateCustomerToken()
         {
-            return Ok(true);
+            var responseJson = new
+            {
+                succesCode = 1,
+                message = "Token is confirmed"
+            };
+
+            return new JsonResult(responseJson);
         }
 
         [HttpGet]
@@ -224,6 +390,16 @@ namespace CustomerService.Controllers
         /// <summary>
         /// TEST FUNCTIONS BEGIN
         /// </summary>
+        /// 
+
+        //[HttpGet]
+        //[Route("test")]
+        //public async Task<IActionResult> TestAsync()
+        //{
+        //    var data = await _testRepository.Get();
+        //    return Ok();
+        //}
+
         [Authorize]
         [HttpGet]
         [Route("test_f1")]

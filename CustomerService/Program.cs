@@ -20,7 +20,7 @@ namespace CustomerService
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseUrls("http://0.0.0.0:5002");
+                    //webBuilder.UseUrls("http://0.0.0.0:5002");
                     webBuilder.UseStartup<Startup>();
                 });
     }

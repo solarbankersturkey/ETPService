@@ -73,6 +73,7 @@ namespace CustomerService
 
             services.AddTransient<IMongoUserDBContext, MongoUserDBContext>();
             services.AddTransient<IUserRepository, UserRepository>();
+            services.AddScoped<IEmailSender, EmailSender>();
         }
 
         // This method gets called by the runtime. 

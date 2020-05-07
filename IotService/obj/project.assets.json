@@ -7997,9 +7997,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\mert2\\source\\repos\\ETPservice\\IotService\\IotService.csproj",
-      "projectName": "IotService",
-      "projectPath": "C:\\Users\\mert2\\source\\repos\\ETPservice\\IotService\\IotService.csproj",
+      "projectUniqueName": "C:\\Users\\mert2\\source\\repos\\ETPservice\\IotService\\iotservice.csproj",
+      "projectName": "iotservice",
+      "projectPath": "C:\\Users\\mert2\\source\\repos\\ETPservice\\IotService\\iotservice.csproj",
       "packagesPath": "C:\\Users\\mert2\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\mert2\\source\\repos\\ETPservice\\IotService\\obj\\",
       "projectStyle": "PackageReference",
@@ -8072,7 +8072,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
       }
     }
   }

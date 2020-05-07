@@ -22,7 +22,7 @@
   },
   "targets": {
     ".NETCoreApp,Version=v3.1": {
-      "Gateway/1.0.0": {
+      "gateway/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Authentication.JwtBearer": "3.1.2",
           "Microsoft.Extensions.Configuration": "3.1.2",
@@ -306,10 +306,10 @@
           "WindowsBase": "4.0.0.0"
         },
         "runtime": {
-          "Gateway.dll": {}
+          "gateway.dll": {}
         },
         "compile": {
-          "Gateway.dll": {}
+          "gateway.dll": {}
         }
       },
       "FluentValidation/8.5.0": {
@@ -2296,7 +2296,7 @@
     }
   },
   "libraries": {
-    "Gateway/1.0.0": {
+    "gateway/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

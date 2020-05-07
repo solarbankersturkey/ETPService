@@ -16,6 +16,8 @@ namespace IdentityService.Model
         public string Username { get; set; }
         [BsonElement("Password")]
         public string Password { get; set; }
+        [BsonElement("OnlineStatus")]
+        public bool OnlineStatus { get; set; }
         [BsonElement("Name")]
         public string Name { get; set; }
         [BsonElement("Surname")]
@@ -32,5 +34,7 @@ namespace IdentityService.Model
         public string Type { get; set; }
         [BsonElement("Detail")]
         public Detail Detail { get; set; }
+        [BsonElement("InstalledPower")]
+        public InstalledPower InstalledPower { get; set; }
     }
 }

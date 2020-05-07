@@ -17,6 +17,7 @@ namespace CustomerService.Model
         public string BirthDate { get; set; }
         public string IdentityNumber { get; set; }
         public string InvoiceNumber { get; set; }
-               
+        public string ShortLocation { get; set; }
+
     }
 }

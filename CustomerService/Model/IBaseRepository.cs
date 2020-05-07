@@ -9,7 +9,7 @@ namespace CustomerService.Model
 {
     public interface IBaseRepository<TEntity> where TEntity : class
     {
-        void Create(TEntity obj);
+        Task<string> Create(TEntity obj);
         void Update(TEntity obj);
         void Delete(string id);
         Task<TEntity> Get(string id);

@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\mert2\\source\\repos\\ETPservice\\CustomerService\\CustomerService.csproj": {}
+    "C:\\Users\\mert2\\source\\repos\\ETPservice\\CustomerService\\customerservice.csproj": {}
   },
   "projects": {
-    "C:\\Users\\mert2\\source\\repos\\ETPservice\\CustomerService\\CustomerService.csproj": {
+    "C:\\Users\\mert2\\source\\repos\\ETPservice\\CustomerService\\customerservice.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mert2\\source\\repos\\ETPservice\\CustomerService\\CustomerService.csproj",
-        "projectName": "CustomerService",
-        "projectPath": "C:\\Users\\mert2\\source\\repos\\ETPservice\\CustomerService\\CustomerService.csproj",
+        "projectUniqueName": "C:\\Users\\mert2\\source\\repos\\ETPservice\\CustomerService\\customerservice.csproj",
+        "projectName": "customerservice",
+        "projectPath": "C:\\Users\\mert2\\source\\repos\\ETPservice\\CustomerService\\customerservice.csproj",
         "packagesPath": "C:\\Users\\mert2\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\mert2\\source\\repos\\ETPservice\\CustomerService\\obj\\",
         "projectStyle": "PackageReference",
@@ -43,6 +43,10 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "MailKit": {
+              "target": "Package",
+              "version": "[2.6.0, )"
+            },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[3.1.2, )"
@@ -86,7 +90,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

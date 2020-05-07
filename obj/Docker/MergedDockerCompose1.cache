@@ -5,12 +5,13 @@ services:
       dockerfile: CustomerService/Dockerfile
       labels:
         com.microsoft.created-by: visual-studio
-        com.microsoft.visual-studio.project-name: CustomerService
+        com.microsoft.visual-studio.project-name: customerservice
       target: base
-    container_name: CustomerService
+    container_name: customerservice
     entrypoint: tail -f /dev/null
     environment:
       ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS: "true"
       ASPNETCORE_URLS: https://+:443;http://+:80
       DOTNET_USE_POLLING_FILE_WATCHER: '1'
       NUGET_FALLBACK_PACKAGES: /root/.nuget/fallbackpackages;/root/.nuget/fallbackpackages2
@@ -18,7 +19,7 @@ services:
     labels:
       com.microsoft.visualstudio.debuggee.arguments: ' --additionalProbingPath /root/.nuget/packages
         --additionalProbingPath /root/.nuget/fallbackpackages --additionalProbingPath
-        /root/.nuget/fallbackpackages2  "bin/Debug/netcoreapp3.1/CustomerService.dll"'
+        /root/.nuget/fallbackpackages2  ""'
       com.microsoft.visualstudio.debuggee.killprogram: /bin/sh -c "if PID=$$(pidof
         dotnet); then kill $$PID; fi"
       com.microsoft.visualstudio.debuggee.program: dotnet
@@ -42,12 +43,13 @@ services:
       dockerfile: Gateway/Dockerfile
       labels:
         com.microsoft.created-by: visual-studio
-        com.microsoft.visual-studio.project-name: Gateway
+        com.microsoft.visual-studio.project-name: gateway
       target: base
-    container_name: Gateway
+    container_name: gateway
     entrypoint: tail -f /dev/null
     environment:
       ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS: "true"
       ASPNETCORE_URLS: https://+:443;http://+:80
       DOTNET_USE_POLLING_FILE_WATCHER: '1'
       NUGET_FALLBACK_PACKAGES: /root/.nuget/fallbackpackages;/root/.nuget/fallbackpackages2
@@ -55,7 +57,7 @@ services:
     labels:
       com.microsoft.visualstudio.debuggee.arguments: ' --additionalProbingPath /root/.nuget/packages
         --additionalProbingPath /root/.nuget/fallbackpackages --additionalProbingPath
-        /root/.nuget/fallbackpackages2  "bin/Debug/netcoreapp3.1/Gateway.dll"'
+        /root/.nuget/fallbackpackages2  ""'
       com.microsoft.visualstudio.debuggee.killprogram: /bin/sh -c "if PID=$$(pidof
         dotnet); then kill $$PID; fi"
       com.microsoft.visualstudio.debuggee.program: dotnet
@@ -79,12 +81,13 @@ services:
       dockerfile: IdentityService/Dockerfile
       labels:
         com.microsoft.created-by: visual-studio
-        com.microsoft.visual-studio.project-name: IdentityService
+        com.microsoft.visual-studio.project-name: identityservice
       target: base
-    container_name: IdentityService
+    container_name: identityservice
     entrypoint: tail -f /dev/null
     environment:
       ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS: "true"
       ASPNETCORE_URLS: https://+:443;http://+:80
       DOTNET_USE_POLLING_FILE_WATCHER: '1'
       NUGET_FALLBACK_PACKAGES: /root/.nuget/fallbackpackages;/root/.nuget/fallbackpackages2
@@ -92,7 +95,7 @@ services:
     labels:
       com.microsoft.visualstudio.debuggee.arguments: ' --additionalProbingPath /root/.nuget/packages
         --additionalProbingPath /root/.nuget/fallbackpackages --additionalProbingPath
-        /root/.nuget/fallbackpackages2  "bin/Debug/netcoreapp3.1/IdentityService.dll"'
+        /root/.nuget/fallbackpackages2  ""'
       com.microsoft.visualstudio.debuggee.killprogram: /bin/sh -c "if PID=$$(pidof
         dotnet); then kill $$PID; fi"
       com.microsoft.visualstudio.debuggee.program: dotnet

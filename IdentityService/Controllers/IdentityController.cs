@@ -20,44 +20,58 @@ namespace IdentityService.Controllers
     public class IdentityController : ControllerBase
     {
         private Crypto encoder { get; set; }
+        private string db_name { get; set; }
+        private string connectionString { get; set; }
+        private IConfigurationBuilder builder { get; set; }
+        private IConfigurationRoot configuration { get; set; }
         public IdentityController()
         {
             encoder = new Crypto();
+            builder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+            configuration = builder.Build();
+            connectionString= configuration.GetSection("MongoSettings").GetSection("Connection").Value;
+            db_name = configuration.GetSection("MongoSettings").GetSection("DatabaseName").Value;
         }
+
+
         [HttpPost]
-        [Route("gettoken")]
-        public async Task<JsonResult> GetToken(string username, string password)
+        [Route("login")]
+        public async Task<JsonResult> Login(string username, string password)
         {
             try
             {
-                IConfigurationBuilder builder = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
-
-                IConfigurationRoot configuration = builder.Build();
-                var connectionString = configuration.GetSection("MongoSettings").GetSection("Connection").Value;
-                var db_name = configuration.GetSection("MongoSettings").GetSection("DatabaseName").Value;
-
                 var client = new MongoClient(connectionString);
                 var db = client.GetDatabase("etp_customer");
                 IMongoCollection<User> collection = db.GetCollection<User>("user");
                 var securepassword = encoder.HashHMAC(Encoding.ASCII.GetBytes("xUhs67g"), Encoding.ASCII.GetBytes(password));
+                //SEEK FOR 'ACTIVE' USER
                 var userResult = await collection.Find(x => x.Username == username && x.Password == securepassword).FirstOrDefaultAsync();
 
 
                 if (userResult != null)
                 {
+                    //set status to true
+                    var updateStatus = userResult;
+                    updateStatus.OnlineStatus = true;
+                    FilterDefinition<User> filter = Builders<User>.Filter.Eq("_id", updateStatus.Id);
+
+                    await collection.ReplaceOneAsync(filter, updateStatus);
+
                     var USER_ID = userResult.Id.ToString();
                     encoder = new Crypto();
 
                     var now = DateTime.UtcNow;
+                    //SET USER CLAIMS
                     var claims = new Claim[]
                     {
-                    new Claim(JwtRegisteredClaimNames.Sub, username),
-                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                    new Claim(JwtRegisteredClaimNames.Iat, now.ToUniversalTime().ToString(),ClaimValueTypes.Integer64),
-                    new Claim("etp_user",encoder.Encrypt(USER_ID))
+                        new Claim(JwtRegisteredClaimNames.Sub, username),
+                        new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                        new Claim(JwtRegisteredClaimNames.Iat, now.ToUniversalTime().ToString(),ClaimValueTypes.Integer64),
+                        new Claim("etp_user",encoder.Encrypt(USER_ID))
                     };
+                    //Define SymmetricSecurityKey
                     var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("a464ce52555fd73023f47d396ab9db20"));
                     var tokenValidationParameters = new TokenValidationParameters
                     {
@@ -71,7 +85,7 @@ namespace IdentityService.Controllers
                         ClockSkew = TimeSpan.Zero,
                         RequireExpirationTime = true
                     };
-
+                    //CREATE the token
                     var jwt = new JwtSecurityToken
                     (
                         issuer: "localhost",
@@ -95,8 +109,8 @@ namespace IdentityService.Controllers
                 {
                     var failResponse = new
                     {
-                        msg = "No such user exists",
-                        code = "-1"
+                        successCode = 0,
+                        message = "User does not exist or wrong information!"
                     };
                     return new JsonResult(failResponse);
                 }

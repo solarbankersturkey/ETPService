@@ -43,3 +43,11 @@ C:\Users\mert2\source\repos\ETPservice\Gateway\obj\Debug\netcoreapp3.1\Gateway.R
 C:\Users\mert2\source\repos\ETPservice\Gateway\obj\Debug\netcoreapp3.1\Gateway.csproj.CopyComplete
 C:\Users\mert2\source\repos\ETPservice\Gateway\obj\Debug\netcoreapp3.1\Gateway.dll
 C:\Users\mert2\source\repos\ETPservice\Gateway\obj\Debug\netcoreapp3.1\Gateway.pdb
+C:\Users\mert2\source\repos\ETPservice\Gateway\bin\Debug\netcoreapp3.1\publish\web.config
+C:\Users\mert2\source\repos\ETPservice\Gateway\bin\Debug\netcoreapp3.1\publish\appsettings.Development.json
+C:\Users\mert2\source\repos\ETPservice\Gateway\bin\Debug\netcoreapp3.1\publish\appsettings.json
+C:\Users\mert2\source\repos\ETPservice\Gateway\bin\Debug\netcoreapp3.1\publish\gateway.deps.json
+C:\Users\mert2\source\repos\ETPservice\Gateway\bin\Debug\netcoreapp3.1\publish\gateway.runtimeconfig.json
+C:\Users\mert2\source\repos\ETPservice\Gateway\bin\Debug\netcoreapp3.1\publish\ocelot.json
+C:\Users\mert2\source\repos\ETPservice\Gateway\obj\Debug\netcoreapp3.1\gateway.genruntimeconfig.cache
+C:\Users\mert2\source\repos\ETPservice\Gateway\obj\Debug\netcoreapp3.1\gateway.csproj.CoreCompileInputs.cache
