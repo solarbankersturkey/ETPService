@@ -11,7 +11,7 @@ Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-co
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "gateway", "Gateway\gateway.csproj", "{D8B78424-1FAD-41BA-9F77-2DBBCF9CC0C0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdminService", "AdminService\AdminService.csproj", "{E9096CC0-56A4-4D4B-8662-543AF0E39E29}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "adminservice", "AdminService\adminservice.csproj", "{E9096CC0-56A4-4D4B-8662-543AF0E39E29}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "iotservice", "IotService\iotservice.csproj", "{0B02D49F-3499-48DB-AB73-272B1FB95BAA}"
 EndProject

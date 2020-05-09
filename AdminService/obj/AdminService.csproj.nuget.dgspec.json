@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\mert2\\source\\repos\\ETPservice\\AdminService\\AdminService.csproj": {}
+    "C:\\Users\\mert2\\OneDrive\\Belgeler\\GitHub\\ETPService\\AdminService\\adminservice.csproj": {}
   },
   "projects": {
-    "C:\\Users\\mert2\\source\\repos\\ETPservice\\AdminService\\AdminService.csproj": {
+    "C:\\Users\\mert2\\OneDrive\\Belgeler\\GitHub\\ETPService\\AdminService\\adminservice.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mert2\\source\\repos\\ETPservice\\AdminService\\AdminService.csproj",
-        "projectName": "AdminService",
-        "projectPath": "C:\\Users\\mert2\\source\\repos\\ETPservice\\AdminService\\AdminService.csproj",
+        "projectUniqueName": "C:\\Users\\mert2\\OneDrive\\Belgeler\\GitHub\\ETPService\\AdminService\\adminservice.csproj",
+        "projectName": "adminservice",
+        "projectPath": "C:\\Users\\mert2\\OneDrive\\Belgeler\\GitHub\\ETPService\\AdminService\\adminservice.csproj",
         "packagesPath": "C:\\Users\\mert2\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mert2\\source\\repos\\ETPservice\\AdminService\\obj\\",
+        "outputPath": "C:\\Users\\mert2\\OneDrive\\Belgeler\\GitHub\\ETPService\\AdminService\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",
@@ -43,13 +43,29 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "MailKit": {
+              "target": "Package",
+              "version": "[2.6.0, )"
+            },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[3.1.3, )"
             },
+            "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
+              "target": "Package",
+              "version": "[1.10.8, )"
+            },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[3.1.1, )"
+            },
+            "MongoDB.Driver": {
+              "target": "Package",
+              "version": "[2.10.4, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.3, )"
             }
           },
           "imports": [

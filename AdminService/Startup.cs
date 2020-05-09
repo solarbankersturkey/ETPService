@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AdminService.Model;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -62,6 +63,16 @@ namespace AdminService
                 x.TokenValidationParameters = tokenValidationParameters;
             });
             services.AddControllers();
+
+            services.Configure<MongoSettings>(options =>
+            {
+                options.Connection = Configuration.GetSection("MongoSettings:Connection").Value;
+                options.DatabaseName = Configuration.GetSection("MongoSettings:DatabaseName").Value;
+            });
+
+            services.AddTransient<IMongoUserDBContext, MongoUserDBContext>();
+            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddScoped<IEmailSender, EmailSender>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

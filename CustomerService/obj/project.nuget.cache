@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "NST05V+Oz+eb85pyJ9seIsPZexUmtqzV+XHH/8p24oGnmFnRz2zif1/FyNyEq22gMhTCMdrtmxcvePgBkb+MSQ==",
+  "dgSpecHash": "uPunxbXRRxraUF9vXYkhnPVi4N2y3AGLjMi5vQcVJg8kK05wl6+SSjyczeYDIxW1RLbwVu6c/eEIIhbCTmhzkg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\mert2\\source\\repos\\ETPservice\\CustomerService\\customerservice.csproj",
+  "projectFilePath": "C:\\Users\\mert2\\OneDrive\\Belgeler\\GitHub\\ETPService\\CustomerService\\customerservice.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mert2\\.nuget\\packages\\dnsclient\\1.2.0\\dnsclient.1.2.0.nupkg.sha512",
     "C:\\Users\\mert2\\.nuget\\packages\\mailkit\\2.6.0\\mailkit.2.6.0.nupkg.sha512",

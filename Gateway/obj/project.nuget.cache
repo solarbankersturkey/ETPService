@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "3jsqGRaKqVyv6fstDpgU8nPigCgBqNdvzZ3s3sh/TXSGdO1PGZlGUV8Wst0E1hrn3CMB+HYZ8kIonHTcO3nJcg==",
+  "dgSpecHash": "38CiCLauiE0WKTxPSW14HtF5FFaDVegUuPSdzzkYZ85egtGhTEZGA2OPKuEQwJtvK1SQ4ZP1LdsE4H+4mjR/aw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\mert2\\source\\repos\\ETPservice\\Gateway\\gateway.csproj",
+  "projectFilePath": "C:\\Users\\mert2\\OneDrive\\Belgeler\\GitHub\\ETPService\\Gateway\\gateway.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mert2\\.nuget\\packages\\fluentvalidation\\8.5.0\\fluentvalidation.8.5.0.nupkg.sha512",
     "C:\\Users\\mert2\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\3.1.2\\microsoft.aspnetcore.authentication.jwtbearer.3.1.2.nupkg.sha512",

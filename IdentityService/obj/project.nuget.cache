@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "7OcZGIg1I7VssCI/g3EXRlga1ngzaT26YiYBrZ/WYTT6QDi1CCm6xcLzzqjLRBEy8QS9adAhhWAPl5iyYkviNw==",
+  "dgSpecHash": "KcrOskIbo/Qb/BAXpTO2To7tLu5quoyCss9U0ldWRbU2JSumxaUDo+Namkbp6GIph0+7xQ3q7gBzwNV3ZBcYEw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\mert2\\source\\repos\\ETPservice\\IdentityService\\identityservice.csproj",
+  "projectFilePath": "C:\\Users\\mert2\\OneDrive\\Belgeler\\GitHub\\ETPService\\IdentityService\\identityservice.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mert2\\.nuget\\packages\\dnsclient\\1.2.0\\dnsclient.1.2.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",

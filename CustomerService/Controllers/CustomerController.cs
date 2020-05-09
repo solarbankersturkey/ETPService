@@ -332,6 +332,7 @@ namespace CustomerService.Controllers
                     var passwordSetter = await _customerRepository.Get(id);
                     var securePassword = encoder.HashHMAC(Encoding.ASCII.GetBytes("xUhs67g"), Encoding.ASCII.GetBytes(password));
                     passwordSetter.Password = securePassword;
+
                     //Update the new hashed password
                     _customerRepository.Update(passwordSetter);
 

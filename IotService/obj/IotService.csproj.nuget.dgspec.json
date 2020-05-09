@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\mert2\\source\\repos\\ETPservice\\IotService\\iotservice.csproj": {}
+    "C:\\Users\\mert2\\OneDrive\\Belgeler\\GitHub\\ETPService\\IotService\\iotservice.csproj": {}
   },
   "projects": {
-    "C:\\Users\\mert2\\source\\repos\\ETPservice\\IotService\\iotservice.csproj": {
+    "C:\\Users\\mert2\\OneDrive\\Belgeler\\GitHub\\ETPService\\IotService\\iotservice.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mert2\\source\\repos\\ETPservice\\IotService\\iotservice.csproj",
+        "projectUniqueName": "C:\\Users\\mert2\\OneDrive\\Belgeler\\GitHub\\ETPService\\IotService\\iotservice.csproj",
         "projectName": "iotservice",
-        "projectPath": "C:\\Users\\mert2\\source\\repos\\ETPservice\\IotService\\iotservice.csproj",
+        "projectPath": "C:\\Users\\mert2\\OneDrive\\Belgeler\\GitHub\\ETPService\\IotService\\iotservice.csproj",
         "packagesPath": "C:\\Users\\mert2\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mert2\\source\\repos\\ETPservice\\IotService\\obj\\",
+        "outputPath": "C:\\Users\\mert2\\OneDrive\\Belgeler\\GitHub\\ETPService\\IotService\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",

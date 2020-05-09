@@ -20,7 +20,7 @@ namespace AdminService
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseUrls("http://0.0.0.0:5003");
+                    //webBuilder.UseUrls("http://0.0.0.0:5003");
                     webBuilder.UseStartup<Startup>();
                 });
     }

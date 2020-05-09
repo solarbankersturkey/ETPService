@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\mert2\\source\\repos\\ETPservice\\IdentityService\\identityservice.csproj": {}
+    "C:\\Users\\mert2\\OneDrive\\Belgeler\\GitHub\\ETPService\\IdentityService\\identityservice.csproj": {}
   },
   "projects": {
-    "C:\\Users\\mert2\\source\\repos\\ETPservice\\IdentityService\\identityservice.csproj": {
+    "C:\\Users\\mert2\\OneDrive\\Belgeler\\GitHub\\ETPService\\IdentityService\\identityservice.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mert2\\source\\repos\\ETPservice\\IdentityService\\identityservice.csproj",
+        "projectUniqueName": "C:\\Users\\mert2\\OneDrive\\Belgeler\\GitHub\\ETPService\\IdentityService\\identityservice.csproj",
         "projectName": "identityservice",
-        "projectPath": "C:\\Users\\mert2\\source\\repos\\ETPservice\\IdentityService\\identityservice.csproj",
+        "projectPath": "C:\\Users\\mert2\\OneDrive\\Belgeler\\GitHub\\ETPService\\IdentityService\\identityservice.csproj",
         "packagesPath": "C:\\Users\\mert2\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mert2\\source\\repos\\ETPservice\\IdentityService\\obj\\",
+        "outputPath": "C:\\Users\\mert2\\OneDrive\\Belgeler\\GitHub\\ETPService\\IdentityService\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",

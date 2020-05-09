@@ -8167,11 +8167,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\mert2\\source\\repos\\ETPservice\\CustomerService\\CustomerService.csproj",
-      "projectName": "CustomerService",
-      "projectPath": "C:\\Users\\mert2\\source\\repos\\ETPservice\\CustomerService\\CustomerService.csproj",
+      "projectUniqueName": "C:\\Users\\mert2\\OneDrive\\Belgeler\\GitHub\\ETPService\\CustomerService\\customerservice.csproj",
+      "projectName": "customerservice",
+      "projectPath": "C:\\Users\\mert2\\OneDrive\\Belgeler\\GitHub\\ETPService\\CustomerService\\customerservice.csproj",
       "packagesPath": "C:\\Users\\mert2\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\mert2\\source\\repos\\ETPservice\\CustomerService\\obj\\",
+      "outputPath": "C:\\Users\\mert2\\OneDrive\\Belgeler\\GitHub\\ETPService\\CustomerService\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\",

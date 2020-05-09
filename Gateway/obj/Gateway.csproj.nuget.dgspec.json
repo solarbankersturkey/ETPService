@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\mert2\\source\\repos\\ETPservice\\Gateway\\gateway.csproj": {}
+    "C:\\Users\\mert2\\OneDrive\\Belgeler\\GitHub\\ETPService\\Gateway\\gateway.csproj": {}
   },
   "projects": {
-    "C:\\Users\\mert2\\source\\repos\\ETPservice\\Gateway\\gateway.csproj": {
+    "C:\\Users\\mert2\\OneDrive\\Belgeler\\GitHub\\ETPService\\Gateway\\gateway.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mert2\\source\\repos\\ETPservice\\Gateway\\gateway.csproj",
+        "projectUniqueName": "C:\\Users\\mert2\\OneDrive\\Belgeler\\GitHub\\ETPService\\Gateway\\gateway.csproj",
         "projectName": "gateway",
-        "projectPath": "C:\\Users\\mert2\\source\\repos\\ETPservice\\Gateway\\gateway.csproj",
+        "projectPath": "C:\\Users\\mert2\\OneDrive\\Belgeler\\GitHub\\ETPService\\Gateway\\gateway.csproj",
         "packagesPath": "C:\\Users\\mert2\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mert2\\source\\repos\\ETPservice\\Gateway\\obj\\",
+        "outputPath": "C:\\Users\\mert2\\OneDrive\\Belgeler\\GitHub\\ETPService\\Gateway\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",

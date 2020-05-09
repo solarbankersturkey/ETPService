@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "IAkcmF6ywZwgYJG3/NwwP8ONg1XpYl4u3fYMAXJyDJsCDavAEeCxiTu4c8Gss3wOBLubhL0tAMFIcAUayrT0zg==",
+  "dgSpecHash": "8zcmcdJVxkO02LXfLZMdX8SkZsRYtMRQUak8G1WGl1BmqTw/Y6yBu3tO0OBHF1KsVAciM3CFicVEKihb6iJ2+Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\mert2\\source\\repos\\ETPservice\\IotService\\iotservice.csproj",
+  "projectFilePath": "C:\\Users\\mert2\\OneDrive\\Belgeler\\GitHub\\ETPService\\IotService\\iotservice.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mert2\\.nuget\\packages\\dnsclient\\1.3.1\\dnsclient.1.3.1.nupkg.sha512",
     "C:\\Users\\mert2\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\3.1.3\\microsoft.aspnetcore.authentication.jwtbearer.3.1.3.nupkg.sha512",
