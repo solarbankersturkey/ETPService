@@ -52,15 +52,9 @@ C:\Users\mert2\source\repos\ETPservice\Gateway\bin\Debug\netcoreapp3.1\publish\o
 C:\Users\mert2\source\repos\ETPservice\Gateway\obj\Debug\netcoreapp3.1\gateway.genruntimeconfig.cache
 C:\Users\mert2\source\repos\ETPservice\Gateway\obj\Debug\netcoreapp3.1\gateway.csproj.CoreCompileInputs.cache
 C:\Users\mert2\OneDrive\Belgeler\GitHub\ETPService\Gateway\bin\Debug\netcoreapp3.1\appsettings.Development.json
-C:\Users\mert2\OneDrive\Belgeler\GitHub\ETPService\Gateway\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
-C:\Users\mert2\OneDrive\Belgeler\GitHub\ETPService\Gateway\bin\Debug\netcoreapp3.1\publish\web.config
 C:\Users\mert2\OneDrive\Belgeler\GitHub\ETPService\Gateway\bin\Debug\netcoreapp3.1\appsettings.json
 C:\Users\mert2\OneDrive\Belgeler\GitHub\ETPService\Gateway\bin\Debug\netcoreapp3.1\ocelot.json
-C:\Users\mert2\OneDrive\Belgeler\GitHub\ETPService\Gateway\bin\Debug\netcoreapp3.1\publish\appsettings.Development.json
-C:\Users\mert2\OneDrive\Belgeler\GitHub\ETPService\Gateway\bin\Debug\netcoreapp3.1\publish\appsettings.json
-C:\Users\mert2\OneDrive\Belgeler\GitHub\ETPService\Gateway\bin\Debug\netcoreapp3.1\publish\gateway.deps.json
-C:\Users\mert2\OneDrive\Belgeler\GitHub\ETPService\Gateway\bin\Debug\netcoreapp3.1\publish\gateway.runtimeconfig.json
-C:\Users\mert2\OneDrive\Belgeler\GitHub\ETPService\Gateway\bin\Debug\netcoreapp3.1\publish\ocelot.json
+C:\Users\mert2\OneDrive\Belgeler\GitHub\ETPService\Gateway\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
 C:\Users\mert2\OneDrive\Belgeler\GitHub\ETPService\Gateway\bin\Debug\netcoreapp3.1\gateway.exe
 C:\Users\mert2\OneDrive\Belgeler\GitHub\ETPService\Gateway\bin\Debug\netcoreapp3.1\gateway.deps.json
 C:\Users\mert2\OneDrive\Belgeler\GitHub\ETPService\Gateway\bin\Debug\netcoreapp3.1\gateway.runtimeconfig.json

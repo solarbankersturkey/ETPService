@@ -6,14 +6,14 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
-COPY ["IdentityService/identityservice.csproj", "IdentityService/"]
-RUN dotnet restore "IdentityService/identityservice.csproj"
+COPY ["IdentityService/IdentityService.csproj", "IdentityService/"]
+RUN dotnet restore "IdentityService/IdentityService.csproj"
 COPY . .
 WORKDIR "/src/IdentityService"
-RUN dotnet build "identityservice.csproj" -c Release -o /app/build
+RUN dotnet build "IdentityService.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "identityservice.csproj" -c Release -o /app/publish
+RUN dotnet publish "IdentityService.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app

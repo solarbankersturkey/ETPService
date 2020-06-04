@@ -46,19 +46,40 @@ namespace AdminService.Controllers
         [Route("activatecustomer")]
         public async Task<ActionResult> ActivateCustomerAsync(string id)
         {
-
-            //DO ACTIVATE JOB
-            var user = await _customerRepository.Get(id);
-            user.Status = "Active";
-            _customerRepository.Update(user);
-            //
-
-            var successResponse = new
+            try
             {
-                successCode = 1,
-                message = "User activated."
-            };
-            return Ok(successResponse);
+                //DO ACTIVATE JOB
+                var user = await _customerRepository.Get(id);
+                user.Status = "Active";
+                _customerRepository.Update(user);
+                //
+                //SEND EMAIL TO ACTIVATED USER
+                var To = user.Email;
+                var Subject = "About Your Membership of ETP";
+                var Body = "Welcome aboard. Your Energy Trading Platform membership has been activated. "+Environment.NewLine+"Now you can start using the platform and trade energy.";
+
+                _emailSender.Send(To, Subject, Body);
+
+
+                var successResponse = new
+                {
+                    successCode = 1,
+                    message = "User activated."
+                };
+                return Ok(successResponse);
+            }
+            catch
+            {
+                
+                var failResponse = new
+                {
+                    successCode = 0,
+                    message = "Activation failed."
+                };
+                return Ok(failResponse);
+
+            }
+            
         }
 
         [Authorize]
@@ -99,6 +120,25 @@ namespace AdminService.Controllers
             };
             return new JsonResult(successResponse);
         }
+
+        //[Authorize]
+        //[HttpPost]
+        //[Route("setprofileimage")]
+        //public JsonResult SetProfileImage(string base64image)
+        //{
+
+        //    //UpdateUser
+        //    _customerRepository.Update(usr);
+        //    //
+
+        //    var successResponse = new
+        //    {
+        //        successCode = 1,
+        //        message = "User updated."
+        //    };
+        //    return new JsonResult(successResponse);
+        //}
+
 
         [Authorize]
         [HttpPost]

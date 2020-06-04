@@ -107,10 +107,10 @@ C:\Users\mert2\source\repos\ETPservice\IdentityService\bin\Debug\netcoreapp3.1\p
 C:\Users\mert2\source\repos\ETPservice\IdentityService\bin\Debug\netcoreapp3.1\publish\identityservice.runtimeconfig.json
 C:\Users\mert2\source\repos\ETPservice\IdentityService\obj\Debug\netcoreapp3.1\identityservice.genruntimeconfig.cache
 C:\Users\mert2\source\repos\ETPservice\IdentityService\obj\Debug\netcoreapp3.1\identityservice.csproj.CoreCompileInputs.cache
+C:\Users\mert2\OneDrive\Belgeler\GitHub\ETPService\IdentityService\bin\Debug\netcoreapp3.1\publish\web.config
 C:\Users\mert2\OneDrive\Belgeler\GitHub\ETPService\IdentityService\bin\Debug\netcoreapp3.1\appsettings.Development.json
 C:\Users\mert2\OneDrive\Belgeler\GitHub\ETPService\IdentityService\bin\Debug\netcoreapp3.1\appsettings.json
 C:\Users\mert2\OneDrive\Belgeler\GitHub\ETPService\IdentityService\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
-C:\Users\mert2\OneDrive\Belgeler\GitHub\ETPService\IdentityService\bin\Debug\netcoreapp3.1\publish\web.config
 C:\Users\mert2\OneDrive\Belgeler\GitHub\ETPService\IdentityService\bin\Debug\netcoreapp3.1\publish\appsettings.Development.json
 C:\Users\mert2\OneDrive\Belgeler\GitHub\ETPService\IdentityService\bin\Debug\netcoreapp3.1\publish\appsettings.json
 C:\Users\mert2\OneDrive\Belgeler\GitHub\ETPService\IdentityService\bin\Debug\netcoreapp3.1\publish\identityservice.deps.json
@@ -204,7 +204,6 @@ C:\Users\mert2\OneDrive\Belgeler\GitHub\ETPService\IdentityService\bin\Debug\net
 C:\Users\mert2\OneDrive\Belgeler\GitHub\ETPService\IdentityService\bin\Debug\netcoreapp3.1\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\mert2\OneDrive\Belgeler\GitHub\ETPService\IdentityService\bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\mert2\OneDrive\Belgeler\GitHub\ETPService\IdentityService\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
-C:\Users\mert2\OneDrive\Belgeler\GitHub\ETPService\IdentityService\obj\Debug\netcoreapp3.1\identityservice.csprojAssemblyReference.cache
 C:\Users\mert2\OneDrive\Belgeler\GitHub\ETPService\IdentityService\obj\Debug\netcoreapp3.1\identityservice.csproj.CoreCompileInputs.cache
 C:\Users\mert2\OneDrive\Belgeler\GitHub\ETPService\IdentityService\obj\Debug\netcoreapp3.1\identityservice.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\mert2\OneDrive\Belgeler\GitHub\ETPService\IdentityService\obj\Debug\netcoreapp3.1\identityservice.AssemblyInfoInputs.cache
@@ -216,3 +215,4 @@ C:\Users\mert2\OneDrive\Belgeler\GitHub\ETPService\IdentityService\obj\Debug\net
 C:\Users\mert2\OneDrive\Belgeler\GitHub\ETPService\IdentityService\obj\Debug\netcoreapp3.1\identityservice.dll
 C:\Users\mert2\OneDrive\Belgeler\GitHub\ETPService\IdentityService\obj\Debug\netcoreapp3.1\identityservice.pdb
 C:\Users\mert2\OneDrive\Belgeler\GitHub\ETPService\IdentityService\obj\Debug\netcoreapp3.1\identityservice.genruntimeconfig.cache
+C:\Users\mert2\OneDrive\Belgeler\GitHub\ETPService\IdentityService\obj\Debug\netcoreapp3.1\identityservice.csprojAssemblyReference.cache

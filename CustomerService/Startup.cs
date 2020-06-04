@@ -30,6 +30,17 @@ namespace CustomerService
         // This method gets called by the runtime.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Add CORS policy
+            services.AddCors(options =>
+            {
+                options.AddPolicy("etpCors",
+                builder =>
+                {
+                    // Not a permanent solution
+                    builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+                });
+            });
+
             var audienceConfig = Configuration.GetSection("Audience");
             var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(audienceConfig["Secret"]));
             var tokenValidationParameters = new TokenValidationParameters
@@ -54,7 +65,7 @@ namespace CustomerService
             .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme,
                 options =>
                 {
-                    options.LoginPath = new PathString("/api/customer/accessdenied");//DÜZENLENECEK
+                    options.LoginPath = new PathString("/api/customer/loginpath");//DÜZENLENECEK
                     options.AccessDeniedPath = new PathString("/api/customer/accessdenied");////////////////
                 });
             services.AddAuthentication().AddJwtBearer("a464ce52555fd73023f47d396ab9db20", x =>
@@ -79,6 +90,11 @@ namespace CustomerService
         // This method gets called by the runtime. 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.Use(async (context, next) =>
+            {
+                context.Response.Headers.Add("Access-Control-Allow-Origin", "*");
+                await next();
+            });
             app.UseAuthentication();
             if (env.IsDevelopment())
             {
@@ -86,8 +102,8 @@ namespace CustomerService
             }
 
             app.UseHttpsRedirection();
-
             app.UseRouting();
+            app.UseCors("etpCors");
 
             app.UseAuthorization();
 

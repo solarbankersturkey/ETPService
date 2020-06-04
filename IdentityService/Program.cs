@@ -14,7 +14,7 @@ namespace IdentityService
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    //webBuilder.UseUrls("http://0.0.0.0:9001");
+                    //webBuilder.UseUrls("http://0.0.0.0:9001");                    
                     webBuilder.UseStartup<Startup>();
                 });
     }

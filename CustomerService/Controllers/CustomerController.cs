@@ -10,9 +10,11 @@ using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using System.Net.Mail;
+using Microsoft.AspNetCore.Cors;
 
 namespace CustomerService.Controllers
 {
+    [EnableCors("etpCors")]
     [Route("api/[controller]")]
     [ApiController]
     public class CustomerController : ControllerBase
@@ -34,7 +36,6 @@ namespace CustomerService.Controllers
             "Mert","Barış"
         };
 
-        [Authorize]
         [HttpGet]
         [Route("index")]
         public IActionResult Index()
@@ -49,6 +50,43 @@ namespace CustomerService.Controllers
         {
             var customers = await _customerRepository.Get();
             return Ok(customers);
+        }
+
+        [HttpGet]        
+        [Authorize]
+        [Route("getcustomershortinfo")]
+        public async Task<ActionResult<IEnumerable<User>>> GetCustomerShortInfo()
+        {
+            try
+            {
+                var customer = await _customerRepository.Get(encoder.Decrypt(HttpContext.User.FindFirst("etp_user").Value));
+                var customerShortInfo = new
+                {
+                    name = customer.Name,
+                    surname = customer.Surname,
+                    fullName = customer.Profile.Full_Name,
+                    image = customer.Profile.Image,
+                    type = customer.Type,
+                    address = customer.Detail.Address,
+                    installedPower = customer.InstalledPower
+                };
+                var successResponse = new
+                {
+                    successCode = 1,
+                    data = customerShortInfo
+                };
+                return Ok(successResponse);
+            }
+            catch (Exception e)
+            {
+                var errorJson = new
+                {
+                    error = e.ToString(),
+                    error_message = e.Message
+                };
+
+                return new JsonResult(errorJson);
+            }            
         }
 
         [Authorize]
@@ -386,6 +424,13 @@ namespace CustomerService.Controllers
         public IActionResult AccessDenied()
         {
             return Unauthorized("You do not have access to this service!");
+        }
+
+        [HttpGet]
+        [Route("loginpath")]
+        public IActionResult LoginPath()
+        {
+            return Unauthorized("Login path");
         }
 
         /// <summary>

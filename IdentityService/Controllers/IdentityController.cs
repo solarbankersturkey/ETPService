@@ -38,16 +38,19 @@ namespace IdentityService.Controllers
 
         [HttpPost]
         [Route("login")]
-        public async Task<JsonResult> Login(string username, string password)
+        public async Task<JsonResult> Login(string email, string password)
         {
             try
             {
+                //HEADERS
+                Response.Headers.Add("Access-Control-Allow-Origin", "*");
+
                 var client = new MongoClient(connectionString);
                 var db = client.GetDatabase("etp_customer");
                 IMongoCollection<User> collection = db.GetCollection<User>("user");
                 var securepassword = encoder.HashHMAC(Encoding.ASCII.GetBytes("xUhs67g"), Encoding.ASCII.GetBytes(password));
-                //SEEK FOR 'ACTIVE' USER
-                var userResult = await collection.Find(x => x.Username == username && x.Password == securepassword).FirstOrDefaultAsync();
+                // + SEEK FOR 'ACTIVE' USER 
+                var userResult = await collection.Find(x => x.Email == email && x.Password == securepassword).FirstOrDefaultAsync();
 
 
                 if (userResult != null)
@@ -60,13 +63,14 @@ namespace IdentityService.Controllers
                     await collection.ReplaceOneAsync(filter, updateStatus);
 
                     var USER_ID = userResult.Id.ToString();
+                    var UserName = updateStatus.Username.ToString();
                     encoder = new Crypto();
 
                     var now = DateTime.UtcNow;
                     //SET USER CLAIMS
                     var claims = new Claim[]
                     {
-                        new Claim(JwtRegisteredClaimNames.Sub, username),
+                        new Claim(JwtRegisteredClaimNames.Sub,UserName),
                         new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                         new Claim(JwtRegisteredClaimNames.Iat, now.ToUniversalTime().ToString(),ClaimValueTypes.Integer64),
                         new Claim("etp_user",encoder.Encrypt(USER_ID))
@@ -97,6 +101,7 @@ namespace IdentityService.Controllers
                     );
 
                     var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
+                    
                     var responseJson = new
                     {
                         access_token = encodedJwt,
