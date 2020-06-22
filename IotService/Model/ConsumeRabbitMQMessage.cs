@@ -39,7 +39,7 @@ namespace IotService.Model
             _channel.ExchangeDeclare("slbex", ExchangeType.Direct);
             _channel.QueueDeclare("slbqueue", false, false, false, null);
             _channel.QueueBind("slbqueue", "slbex", "slbtr", null);
-            _channel.BasicQos(0, 1, false);
+            //_channel.BasicQos(0, 1, false);
 
             _connection.ConnectionShutdown += RabbitMQ_ConnectionShutdown;
         }

@@ -19,6 +19,7 @@ namespace CustomerService.Controllers
     [ApiController]
     public class CustomerController : ControllerBase
     {
+        public string mainUrl = "https://www.etp.solarbankers.org";
         private readonly IUserRepository _customerRepository;
         public Crypto encoder { get; set; }
         private IEmailSender _emailSender;
@@ -198,8 +199,7 @@ namespace CustomerService.Controllers
 
                 if(control.Count == 0)
                 {
-                    var username = "c_" + DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString() + DateTimeOffset.UtcNow.Millisecond.ToString();
-                    var securepassword = encoder.HashHMAC(Encoding.ASCII.GetBytes("xUhs67g"), Encoding.ASCII.GetBytes("no_password_set"));
+                    var username = "c_" + DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString() + DateTimeOffset.UtcNow.Millisecond.ToString();                    
 
                     //create the customer instance
                     User newCustomer = new User()
@@ -209,7 +209,6 @@ namespace CustomerService.Controllers
                         Email = rm.Email,
                         Status = "New",
                         Username = username,
-                        Password = securepassword,
                         OnlineStatus = false,
                     };
 
@@ -221,7 +220,7 @@ namespace CustomerService.Controllers
                     var To = rm.Email;
                     var Subject = "Verify your account";
                     var Body = "Please verify your email address by clicking here to move on to the next step in your energy trading platform membership." +
-                               Environment.NewLine + "<br /><b><a href='www.google.com?id=" + resultid + "'>Verify My Account</a></b>";
+                               Environment.NewLine + "<br /><b><a href='"+mainUrl+ "/auth/register?id=" + resultid + "'>Verify My Account</a></b>";
 
                     _emailSender.Send(To, Subject, Body);
 
@@ -265,7 +264,10 @@ namespace CustomerService.Controllers
             try
             {
                 User userToComplete = await _customerRepository.Get(rc.Id);
+                var Timestamp = new DateTimeOffset(DateTime.UtcNow).ToUnixTimeSeconds();
+                var securepassword = encoder.HashHMAC(Encoding.ASCII.GetBytes("xUhs67g"), Encoding.ASCII.GetBytes(Timestamp.ToString()));
                 userToComplete.Status = "Waiting";
+                userToComplete.Password = securepassword;
                 //fill the address field
                 Address address = new Address() { 
                     City = rc.City, 
@@ -285,6 +287,15 @@ namespace CustomerService.Controllers
                 
                 //COMPLETE REGISTRATION
                 _customerRepository.Update(userToComplete);
+
+                //SEND MAIL
+                //MAIL BEGIN
+
+                var To = userToComplete.Email;
+                var Subject = "Your account is completed";
+                var Body = "You can login to the system with the following information:"+Environment.NewLine+"Email:"+userToComplete.Email+Environment.NewLine+"Password:"+ Timestamp.ToString() +Environment.NewLine+ Environment.NewLine + Environment.NewLine+ "Please do not share your login information with anyone.";
+
+                _emailSender.Send(To, Subject, Body);
 
 
                 var successResponse = new
@@ -322,7 +333,7 @@ namespace CustomerService.Controllers
                     var Subject = "Recover your password";
                     var Body = "You can create a new password by clicking the link below." +
                                Environment.NewLine + 
-                               "<br /><b><a href='www.google.com?id=" + userId + "'>Set Password</a></b>";
+                               "<br /><b><a href='"+mainUrl+"/auth/reset?id=" + userId + "'>Set Password</a></b>";
 
                     _emailSender.Send(To, Subject, Body);
 
