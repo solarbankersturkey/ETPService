@@ -216,4 +216,3 @@ C:\Users\mert2\OneDrive\Belgeler\GitHub\ETPService\CustomerService\obj\Debug\net
 C:\Users\mert2\OneDrive\Belgeler\GitHub\ETPService\CustomerService\obj\Debug\netcoreapp3.1\customerservice.dll
 C:\Users\mert2\OneDrive\Belgeler\GitHub\ETPService\CustomerService\obj\Debug\netcoreapp3.1\customerservice.pdb
 C:\Users\mert2\OneDrive\Belgeler\GitHub\ETPService\CustomerService\obj\Debug\netcoreapp3.1\customerservice.genruntimeconfig.cache
-C:\Users\mert2\OneDrive\Belgeler\GitHub\ETPService\CustomerService\obj\Debug\netcoreapp3.1\customerservice.csprojAssemblyReference.cache

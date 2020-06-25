@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using MimeKit;
+using System.Security.Authentication;
 
 namespace CustomerService.Model
 {
