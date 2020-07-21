@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CustomerService.Model
-{
-    public class Address
-    {
+namespace CustomerService.Model {
+    public class Address {
         public string Full_Address { get; set; }
         public string City { get; set; }
         public string State { get; set; }

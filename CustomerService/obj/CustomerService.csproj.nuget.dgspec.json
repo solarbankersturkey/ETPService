@@ -1,32 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\mert2\\source\\repos\\ETPservice\\CustomerService\\CustomerService.csproj": {}
+    "/home/eco/solar/ETPService/CustomerService/CustomerService.csproj": {}
   },
   "projects": {
-    "C:\\Users\\mert2\\source\\repos\\ETPservice\\CustomerService\\CustomerService.csproj": {
+    "/home/eco/solar/ETPService/CustomerService/CustomerService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mert2\\source\\repos\\ETPservice\\CustomerService\\CustomerService.csproj",
+        "projectUniqueName": "/home/eco/solar/ETPService/CustomerService/CustomerService.csproj",
         "projectName": "CustomerService",
-        "projectPath": "C:\\Users\\mert2\\source\\repos\\ETPservice\\CustomerService\\CustomerService.csproj",
-        "packagesPath": "C:\\Users\\mert2\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mert2\\source\\repos\\ETPservice\\CustomerService\\obj\\",
+        "projectPath": "/home/eco/solar/ETPService/CustomerService/CustomerService.csproj",
+        "packagesPath": "/home/eco/.nuget/packages/",
+        "outputPath": "/home/eco/solar/ETPService/CustomerService/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\mert2\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "/home/eco/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -86,7 +79,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.103/RuntimeIdentifierGraph.json"
         }
       }
     }

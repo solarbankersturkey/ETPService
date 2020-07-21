@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CustomerService.Contexts;
+using CustomerService.Dto;
 using CustomerService.Model;
+using CustomerService.Repositories;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -16,24 +19,19 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 
-namespace CustomerService
-{
-    public class Startup
-    {
-        public Startup(IConfiguration configuration)
-        {
+namespace CustomerService {
+    public class Startup {
+        public Startup (IConfiguration configuration) {
             Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime.
-        public void ConfigureServices(IServiceCollection services)
-        {
-            var audienceConfig = Configuration.GetSection("Audience");
-            var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(audienceConfig["Secret"]));
-            var tokenValidationParameters = new TokenValidationParameters
-            {
+        public void ConfigureServices (IServiceCollection services) {
+            var audienceConfig = Configuration.GetSection ("Audience");
+            var signingKey = new SymmetricSecurityKey (Encoding.ASCII.GetBytes (audienceConfig["Secret"]));
+            var tokenValidationParameters = new TokenValidationParameters {
                 ValidateIssuerSigningKey = true,
                 IssuerSigningKey = signingKey,
                 ValidateIssuer = true,
@@ -45,54 +43,47 @@ namespace CustomerService
                 RequireExpirationTime = true
             };
 
-            services.AddAuthentication(o =>
-            {
+            services.AddAuthentication (o => {
                 o.DefaultAuthenticateScheme = "a464ce52555fd73023f47d396ab9db20";
             });
 
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-            .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme,
-                options =>
-                {
-                    options.LoginPath = new PathString("/api/customer/accessdenied");//DÜZENLENECEK
-                    options.AccessDeniedPath = new PathString("/api/customer/accessdenied");////////////////
-                });
-            services.AddAuthentication().AddJwtBearer("a464ce52555fd73023f47d396ab9db20", x =>
-            {
+            services.AddAuthentication (CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie (CookieAuthenticationDefaults.AuthenticationScheme,
+                    options => {
+                        options.LoginPath = new PathString ("/api/customer/accessdenied"); //Dï¿½ZENLENECEK
+                        options.AccessDeniedPath = new PathString ("/api/customer/accessdenied"); ////////////////
+                    });
+            services.AddAuthentication ().AddJwtBearer ("a464ce52555fd73023f47d396ab9db20", x => {
                 x.RequireHttpsMetadata = false;
                 x.TokenValidationParameters = tokenValidationParameters;
             });
 
-            services.AddControllers();
+            services.AddControllers ();
             //Repository pattern
-            services.Configure<MongoSettings>(options =>
-            {
-                options.Connection = Configuration.GetSection("MongoSettings:Connection").Value;
-                options.DatabaseName = Configuration.GetSection("MongoSettings:DatabaseName").Value;
+            services.Configure<MongoSettings> (options => {
+                options.Connection = Configuration.GetSection ("MongoSettings:Connection").Value;
+                options.DatabaseName = Configuration.GetSection ("MongoSettings:DatabaseName").Value;
             });
 
-            services.AddTransient<IMongoUserDBContext, MongoUserDBContext>();
-            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IMongoUserDBContext, MongoUserDBContext> ();
+            services.AddTransient<IUserRepository, UserRepository> ();
         }
 
         // This method gets called by the runtime. 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-        {
-            app.UseAuthentication();
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
+        public void Configure (IApplicationBuilder app, IWebHostEnvironment env) {
+            app.UseAuthentication ();
+            if (env.IsDevelopment ()) {
+                app.UseDeveloperExceptionPage ();
             }
 
-            app.UseHttpsRedirection();
+            app.UseHttpsRedirection ();
 
-            app.UseRouting();
+            app.UseRouting ();
 
-            app.UseAuthorization();
+            app.UseAuthorization ();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
+            app.UseEndpoints (endpoints => {
+                endpoints.MapControllers ();
             });
         }
     }

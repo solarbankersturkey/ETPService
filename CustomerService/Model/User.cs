@@ -1,36 +1,47 @@
-﻿using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
-namespace CustomerService.Model
-{
-    public class User
-    {
+namespace CustomerService.Model {
+    public class User {
         [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
+        [BsonRepresentation (BsonType.ObjectId)]
         public ObjectId Id { get; set; }
-        [BsonElement("Username")]
+
+        [BsonElement ("Username")]
         public string Username { get; set; }
-        [BsonElement("Password")]
+
+        [BsonElement ("Password")]
         public string Password { get; set; }
-        [BsonElement("Name")]
+
+        [BsonElement ("Name")]
         public string Name { get; set; }
-        [BsonElement("Surname")]
+
+        [BsonElement ("Surname")]
         public string Surname { get; set; }
-        [BsonElement("Email")]
+
+        [BsonElement ("Email")]
         public string Email { get; set; }
-        [BsonElement("Profile")]
+
+        // ? ask this
+        [BsonElement ("Profile")]
         public Profile Profile { get; set; }
-        [BsonElement("Status")]
+
+        // ? ask this
+        [BsonElement ("Status")]
         public string Status { get; set; }
-        [BsonElement("Wallet_ID")]
+
+        [BsonElement ("Wallet_ID")]
         public string Wallet_ID { get; set; }
-        [BsonElement("Type")]
+
+        // prosumer / cunsomer
+        [BsonElement ("Type")]
         public string Type { get; set; }
-        [BsonElement("Detail")]
+
+        [BsonElement ("Detail")]
         public Detail Detail { get; set; }
     }
 }
